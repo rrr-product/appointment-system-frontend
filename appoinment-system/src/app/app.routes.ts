@@ -1,19 +1,9 @@
 import { Routes } from '@angular/router';
-import { Login } from './components/login/login';
-import { DashboardLayout } from './components/dashboard-layout/dashboard-layout';
-import { Stats } from './components/stats/stats';
-import { ServicesList } from './components/admin/service-component/services-list/services-list';
-import { ServiceForm } from './components/admin/service-component/service-form/service-form';
-import { UsersList } from './components/admin/user-component/users-list/users-list';
-import { UserForm } from './components/admin/user-component/user-form/user-form';
-
-import { ServiceDetail } from './components/admin/service-component/service-detail/service-detail';
-import { UserDetail } from './components/admin/user-component/user-detail/user-detail';
 
 export const routes: Routes = [
     {
         path: 'login',
-        component: Login
+        loadComponent: () => import('./components/login/login').then(m => m.Login)
     },
     {
         path: '',
@@ -22,43 +12,43 @@ export const routes: Routes = [
     },
     {
         path: 'dashboard',
-        component: DashboardLayout,
+        loadComponent: () => import('./components/dashboard-layout/dashboard-layout').then(m => m.DashboardLayout),
         children: [
             {
                 path: 'stats',
-                component: Stats
+                loadComponent: () => import('./components/stats/stats').then(m => m.Stats)
             },
             {
                 path: 'services',
-                component: ServicesList
+                loadComponent: () => import('./components/admin/service-component/services-list/services-list').then(m => m.ServicesList)
             },
             {
                 path: 'services/new',
-                component: ServiceForm
+                loadComponent: () => import('./components/admin/service-component/service-form/service-form').then(m => m.ServiceForm)
             },
             {
                 path: 'services/edit/:id',
-                component: ServiceForm
+                loadComponent: () => import('./components/admin/service-component/service-form/service-form').then(m => m.ServiceForm)
             },
             {
                 path: 'services/view/:id',
-                component: ServiceDetail
+                loadComponent: () => import('./components/admin/service-component/service-detail/service-detail').then(m => m.ServiceDetail)
             },
             {
                 path: 'users',
-                component: UsersList
+                loadComponent: () => import('./components/admin/user-component/users-list/users-list').then(m => m.UsersList)
             },
             {
                 path: 'users/new',
-                component: UserForm
+                loadComponent: () => import('./components/admin/user-component/user-form/user-form').then(m => m.UserForm)
             },
             {
                 path: 'users/edit/:id',
-                component: UserForm
+                loadComponent: () => import('./components/admin/user-component/user-form/user-form').then(m => m.UserForm)
             },
             {
                 path: 'users/view/:id',
-                component: UserDetail
+                loadComponent: () => import('./components/admin/user-component/user-detail/user-detail').then(m => m.UserDetail)
             }
         ]
     }
