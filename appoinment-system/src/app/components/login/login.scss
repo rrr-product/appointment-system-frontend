@@ -87,6 +87,44 @@
     }
 }
 
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .premium-input {
+        padding-right: 2.5rem;
+    }
+}
+
+.password-toggle {
+    position: absolute;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+
+    &:hover {
+        color: #374151;
+    }
+
+    &:focus {
+        outline: none;
+        color: #2563eb;
+    }
+
+    svg {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+}
+
 .premium-input {
     width: 100%;
     appearance: none;
