@@ -1,0 +1,188 @@
+<div class="container-fluid py-4 bg-light min-vh-100">
+    <div class="max-w-7xl mx-auto px-lg-4">
+        <!-- Back Link & Header Actions -->
+        <div class="d-flex justify-content-between align-items-start mb-4">
+            <div class="flex-grow-1">
+                <h4 class="fw-bold text-dark text-uppercase mb-3 tracking-tight" style="font-size: 1.25rem;">
+                    <span class="text-primary cursor-pointer hover:text-primary-emphasis transition-colors"
+                        (click)="goBack()" style="cursor: pointer;">Service</span>
+                    :: View
+                </h4>
+                
+                <div class="d-flex align-items-center gap-3 mb-2">
+                    <p-tag [value]="service?.isActive ? 'Active' : 'Inactive'" 
+                           [severity]="service?.isActive ? 'success' : 'secondary'"
+                           styleClass="rounded-pill px-3"></p-tag>
+                </div>
+                
+                <h1 class="fw-bold text-dark mb-1" style="font-size: 2.25rem;">{{ service?.name }}</h1>
+                <p class="text-secondary mb-0" style="font-size: 0.9rem;">Service ID: SVC-{{ service?.id?.substring(0,8) | uppercase }}</p>
+            </div>
+            
+            <div class="d-flex gap-2 mt-2">
+                <p-button severity="secondary" [text]="true" (click)="deleteService()" styleClass="border shadow-sm bg-white">
+                    <i class="pi pi-trash me-md-2"></i>
+                    <span class="d-none d-md-inline">Delete</span>
+                </p-button>
+                <p-button severity="success" (click)="editService()" [raised]="true">
+                    <i class="pi pi-pencil me-md-2"></i>
+                    <span class="d-none d-md-inline">Edit Service</span>
+                </p-button>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <!-- Main Content Area -->
+            <div class="col-lg-8">
+                <!-- Service Overview Card -->
+                <div class="card border-0 shadow-sm rounded-4 mb-4">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold mb-4">Service Overview</h5>
+                        <p class="text-secondary lh-lg mb-5">
+                            {{ service?.description || 'No description available for this service.' }}
+                        </p>
+                        
+                        <div class="row g-4 pt-4 border-top">
+                            <div class="col-md-6 col-xl-3">
+                                <label class="text-secondary fw-bold text-uppercase mb-2 d-block" style="font-size: 0.7rem; letter-spacing: 0.05em;">Service Type</label>
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="pi pi-video text-primary"></i>
+                                    <span class="fw-semibold">Virtual / Remote</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xl-3">
+                                <label class="text-secondary fw-bold text-uppercase mb-2 d-block" style="font-size: 0.7rem; letter-spacing: 0.05em;">Currency</label>
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="pi pi-money-bill text-success"></i>
+                                    <span class="fw-semibold">USD ($)</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xl-3">
+                                <label class="text-secondary fw-bold text-uppercase mb-2 d-block" style="font-size: 0.7rem; letter-spacing: 0.05em;">Category</label>
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="pi pi-briefcase text-info"></i>
+                                    <span class="fw-semibold">Professional Suite</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xl-3">
+                                <label class="text-secondary fw-bold text-uppercase mb-2 d-block" style="font-size: 0.7rem; letter-spacing: 0.05em;">Last Updated</label>
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="pi pi-clock text-warning"></i>
+                                    <span class="fw-semibold">Today</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Availability Card -->
+                <div class="card border-0 shadow-sm rounded-4">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold mb-4">Default Availability</h5>
+                        <div class="d-flex flex-wrap gap-2">
+                            <div *ngFor="let day of ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']" 
+                                 class="flex-grow-1 p-3 rounded-3 text-center border"
+                                 [ngClass]="{'bg-primary-subtle border-primary-subtle': day !== 'SAT' && day !== 'SUN', 'bg-light border-light': day === 'SAT' || day === 'SUN'}">
+                                <div class="fw-bold mb-2 text-uppercase" style="font-size: 0.7rem;">{{ day }}</div>
+                                <div class="small fw-semibold" [ngClass]="{'text-primary': day !== 'SAT' && day !== 'SUN', 'text-secondary opacity-50': day === 'SAT' || day === 'SUN'}">
+                                    {{ (day === 'SAT' || day === 'SUN') ? 'OFF' : '9:00 - 17:00' }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Metrics Card -->
+                <div class="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold mb-4">Service Metrics</h5>
+                        
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <label class="text-secondary fw-bold text-uppercase mb-1 d-block" style="font-size: 0.7rem;">Unit Price</label>
+                                    <h3 class="fw-bold mb-0">{{ service?.price | currency }}</h3>
+                                </div>
+                                <i class="pi pi-tag text-success-emphasis bg-success-subtle p-2 rounded-3" style="font-size: 1.25rem;"></i>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <label class="text-secondary fw-bold text-uppercase mb-1 d-block" style="font-size: 0.7rem;">Duration</label>
+                                    <h3 class="fw-bold mb-0">{{ service?.durationMinutes }} mins</h3>
+                                </div>
+                                <i class="pi pi-stopwatch text-primary-emphasis bg-primary-subtle p-2 rounded-3" style="font-size: 1.25rem;"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Performance Card -->
+                <div class="card border-0 shadow-sm rounded-4 mb-4 bg-success text-white overflow-hidden position-relative" style="background: linear-gradient(135deg, #065f46 0%, #047857 100%) !important;">
+                    <div class="card-body p-4 position-relative" style="z-index: 2;">
+                        <h5 class="fw-bold mb-4 opacity-75 text-white">Service Performance</h5>
+                        
+                        <div class="d-flex justify-content-between mb-3 opacity-90">
+                            <span>Total Bookings</span>
+                            <span class="fw-bold">142</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3 opacity-90">
+                            <span>Avg. Rating</span>
+                            <span class="fw-bold">4.9 ★</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-4 pt-3 border-top border-white border-opacity-25">
+                            <span>Revenue Generated</span>
+                            <span class="fw-bold h4 mb-0">$35,358</span>
+                        </div>
+                        
+                        <button class="btn btn-light w-100 fw-bold border-0 py-2 shadow-sm" style="color: #065f46;">
+                            View Detailed Analytics
+                        </button>
+                    </div>
+                    <!-- Decorative Graphic Placeholder -->
+                    <div class="position-absolute bottom-0 right-0 opacity-10 pointer-events-none p-3" style="font-size: 8rem; right: -1rem; bottom: -2rem;">
+                        <i class="pi pi-chart-line"></i>
+                    </div>
+                </div>
+
+                <!-- Consultants Card -->
+                <div class="card border-0 shadow-sm rounded-4">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold mb-4">Consultants</h5>
+                        
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                            <div class="bg-primary-subtle p-2 rounded-circle">
+                                <i class="pi pi-user text-primary" style="font-size: 1.5rem;"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <div class="fw-bold">Sarah Jenkins</div>
+                                <div class="text-secondary small">Lead Strategist</div>
+                            </div>
+                            <i class="pi pi-chevron-right text-secondary opacity-50"></i>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                            <div class="bg-info-subtle p-2 rounded-circle">
+                                <i class="pi pi-user text-info" style="font-size: 1.5rem;"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <div class="fw-bold">Marcus Thorne</div>
+                                <div class="text-secondary small">Senior Consultant</div>
+                            </div>
+                            <i class="pi pi-chevron-right text-secondary opacity-50"></i>
+                        </div>
+
+                        <button class="btn border border-dashed w-100 text-secondary fw-bold py-2 border-2 rounded-3 hover-bg-light transition-all" style="border-style: dashed !important;">
+                            + Assign More
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="container-fluid p-3">
+    <div class="d-flex justify-content-between align-items-center mb-4 px-2">
+        <h2 class="fw-bold text-dark text-uppercase mb-0 tracking-tight" style="font-size: 1.5rem;">Manage Services</h2>
+        <p-button (click)="openNew()" severity="success" [raised]="true">
+            <i class="pi pi-plus me-md-2"></i>
+            <span class="d-none d-md-inline">New Service</span>
+        </p-button>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-3 overflow-hidden">
+
+    <p-table [value]="services" [tableStyle]="{ 'min-width': '50rem' }" [rows]="10" [paginator]="true">
+        <ng-template #header>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Duration (mins)</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template #body let-service>
+            <tr>
+                <td class="font-medium">{{ service.name }}</td>
+                <td>{{ service.price | currency }}</td>
+                <td>{{ service.durationMinutes }}</td>
+                <td>
+                    <p-tag [value]="service.isActive ? 'Active' : 'Inactive'" [severity]="service.isActive ? 'success' : 'danger'"></p-tag>
+                </td>
+                <td>
+                    <div class="flex gap-2">
+                        <p-button icon="pi pi-eye" [rounded]="true" [text]="true" severity="info" (click)="viewService(service)"></p-button>
+                        <p-button icon="pi pi-pencil" [rounded]="true" [text]="true" severity="success" (click)="editService(service)"></p-button>
+                        <p-button icon="pi pi-trash" [rounded]="true" [text]="true" severity="danger" (click)="deleteService(service)"></p-button>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+</div>

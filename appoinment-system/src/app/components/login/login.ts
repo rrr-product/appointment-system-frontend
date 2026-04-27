@@ -20,6 +20,6 @@ export class Login {
 
   onSubmit() {
     console.log(this.email, this.password);
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/dashboard', 'stats']);
   }
 }

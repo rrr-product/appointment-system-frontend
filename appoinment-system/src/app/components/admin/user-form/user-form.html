@@ -1,0 +1,64 @@
+<div class="container-fluid p-3">
+    <div class="card border-0 shadow-sm rounded-3 overflow-hidden">
+        <div class="card-header bg-white border-bottom-0 pt-4 px-4 pb-0">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h4 class="fw-bold text-dark text-uppercase mb-0 tracking-tight" style="font-size: 1.25rem;">
+                        <span class="text-primary cursor-pointer hover:text-primary-emphasis transition-colors"
+                            (click)="cancel()" style="cursor: pointer;">User</span>
+                        :: {{ isEditMode ? 'Edit' : 'Create' }}
+                    </h4>
+                </div>
+                <p-button (click)="save()" severity="success" size="small" [raised]="true">
+                    <i class="pi pi-save me-md-2"></i>
+                    <span class="d-none d-md-inline">Save User</span>
+                </p-button>
+            </div>
+        </div>
+        <div class="card-body p-4">
+            <div class="row g-4">
+                <div class="col-12">
+                    <label for="name" class="form-label text-secondary fw-bold text-uppercase"
+                        style="font-size: 0.7rem; letter-spacing: 0.1em;">Full Name</label>
+                    <input type="text" class="form-control py-2 shadow-none border-secondary-subtle" id="name"
+                        [(ngModel)]="user.name" placeholder="e.g. John Doe" autocomplete="off">
+                    @if(submitted && !user.name){
+                    <div class="text-danger small mt-1">Name is required.</div>
+                    }
+                </div>
+                <div class="col-12">
+                    <label for="email" class="form-label text-secondary fw-bold text-uppercase"
+                        style="font-size: 0.7rem; letter-spacing: 0.1em;">Email Address</label>
+                    <input type="email" class="form-control py-2 shadow-none border-secondary-subtle" id="email"
+                        [(ngModel)]="user.email" placeholder="john@example.com" autocomplete="off">
+                    @if(submitted && !user.email){
+                    <div class="text-danger small mt-1">Email is required.</div>
+                    }
+                </div>
+                <div class="col-md-6">
+                    <label for="role" class="form-label text-secondary fw-bold text-uppercase"
+                        style="font-size: 0.7rem; letter-spacing: 0.1em;">System Role</label>
+                    <p-select [options]="roles" [(ngModel)]="user.role" optionLabel="label" optionValue="value"
+                        appendTo="body" inputId="role" styleClass="w-100"
+                        class="shadow-none border-secondary-subtle"></p-select>
+                </div>
+                <div class="col-md-6">
+                    <label for="phone" class="form-label text-secondary fw-bold text-uppercase"
+                        style="font-size: 0.7rem; letter-spacing: 0.1em;">Phone Number</label>
+                    <input type="text" class="form-control py-2 shadow-none border-secondary-subtle" id="phone"
+                        [(ngModel)]="user.phone" placeholder="(555) 000-0000" autocomplete="off">
+                </div>
+                <div class="col-12">
+                    <div class="p-3 bg-light rounded-3 border border-light-subtle d-flex align-items-center gap-3">
+                        <p-checkbox [(ngModel)]="user.isActive" [binary]="true" inputId="active"></p-checkbox>
+                        <div>
+                            <label for="active" class="fw-bold text-dark d-block mb-0"
+                                style="font-size: 0.9rem; cursor: pointer;">Active Status</label>
+                            <small class="text-secondary">Visible to clients for public booking.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
