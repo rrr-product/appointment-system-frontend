@@ -11,8 +11,8 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { MenuItem } from 'primeng/api';
 
-import { User } from '../../../models/user.model';
-import { UserService } from '../../../services/user.service';
+import { User } from '../../../../models/user.model';
+import { UserService } from '../../../../services/user.service';
 
 @Component({
   selector: 'app-user-form',

@@ -2,13 +2,13 @@ import { Routes } from '@angular/router';
 import { Login } from './components/login/login';
 import { DashboardLayout } from './components/dashboard-layout/dashboard-layout';
 import { Stats } from './components/stats/stats';
-import { ServicesList } from './components/admin/services-list/services-list';
-import { ServiceForm } from './components/admin/service-form/service-form';
-import { UsersList } from './components/admin/users-list/users-list';
-import { UserForm } from './components/admin/user-form/user-form';
+import { ServicesList } from './components/admin/service-component/services-list/services-list';
+import { ServiceForm } from './components/admin/service-component/service-form/service-form';
+import { UsersList } from './components/admin/user-component/users-list/users-list';
+import { UserForm } from './components/admin/user-component/user-form/user-form';
 
-import { ServiceDetail } from './components/admin/service-detail/service-detail';
-import { UserDetail } from './components/admin/user-detail/user-detail';
+import { ServiceDetail } from './components/admin/service-component/service-detail/service-detail';
+import { UserDetail } from './components/admin/user-component/user-detail/user-detail';
 
 export const routes: Routes = [
     {

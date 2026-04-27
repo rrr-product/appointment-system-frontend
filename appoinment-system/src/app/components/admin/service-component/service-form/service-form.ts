@@ -12,8 +12,8 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { MenuItem } from 'primeng/api';
 
-import { Service } from '../../../models/service.model';
-import { ServiceService } from '../../../services/service.service';
+import { Service } from '../../../../models/service.model';
+import { ServiceService } from '../../../../services/service.service';
 
 @Component({
   selector: 'app-service-form',

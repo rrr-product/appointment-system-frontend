@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Router, ActivatedRoute, RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
-import { Service } from '../../../models/service.model';
-import { ServiceService } from '../../../services/service.service';
+import { Service } from '../../../../models/service.model';
+import { ServiceService } from '../../../../services/service.service';
 
 @Component({
   selector: 'app-service-detail',

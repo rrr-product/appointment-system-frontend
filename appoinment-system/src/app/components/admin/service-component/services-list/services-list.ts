@@ -7,8 +7,8 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { TagModule } from 'primeng/tag';
 
-import { Service } from '../../../models/service.model';
-import { ServiceService } from '../../../services/service.service';
+import { Service } from '../../../../models/service.model';
+import { ServiceService } from '../../../../services/service.service';
 
 @Component({
   selector: 'app-services-list',

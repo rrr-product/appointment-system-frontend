@@ -4,8 +4,8 @@ import { Router, ActivatedRoute, RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
 import { AvatarModule } from 'primeng/avatar';
-import { User } from '../../../models/user.model';
-import { UserService } from '../../../services/user.service';
+import { User } from '../../../../models/user.model';
+import { UserService } from '../../../../services/user.service';
 
 @Component({
   selector: 'app-user-detail',

@@ -7,8 +7,8 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { TagModule } from 'primeng/tag';
 
-import { User, UserRole } from '../../../models/user.model';
-import { UserService } from '../../../services/user.service';
+import { User, UserRole } from '../../../../models/user.model';
+import { UserService } from '../../../../services/user.service';
 
 @Component({
   selector: 'app-users-list',
